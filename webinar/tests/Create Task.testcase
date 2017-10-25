@@ -362,7 +362,7 @@
                   <value class="value" valueClass="boolean">false</value>
                 </argument>
                 <argument id="captureBefore">
-                  <value class="value" valueClass="boolean">false</value>
+                  <value class="value" valueClass="string">true</value>
                 </argument>
                 <argument id="captureAfter">
                   <value class="value" valueClass="boolean">false</value>
