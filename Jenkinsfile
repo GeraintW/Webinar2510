@@ -16,9 +16,13 @@ node {
         // need to pull out assigned username
         rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:config:get defaultusername --json"
         println(rmsg)
+        def beginIndex = rmsg.indexOf('{')
+        def endIndex = rmsg.indexOf('}')
+        def jsobSubstring = rmsg.substring(beginIndex)
+        println(jsobSubstring)
         def jsonSlurper = new JsonSlurperClassic()
-        def robj = jsonSlurper.parseText(rmsg)
-        if (robj.status != 0) { error 'org creation failed: ' + robj.message }
+        def robj = jsonSlurper.parseText(jsobSubstring)
+        if (robj.status != 0) { error 'Config get defaultusername failed: ' + robj.message }
         SFDC_USERNAME=robj.result[0].value
         println(SFDC_USERNAME)
         robj = null
